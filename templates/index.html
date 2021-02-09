@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- https://github.com/joshbuchea/HEAD -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='index.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movies Recommondations</title>
+  </head>
+
+  <body>
+    <h1>Movies Recommondations</h1>
+    <form action="/" method="GET">
+      <label for="genres">Choose your genre from the list:</label>
+      <input list="genres" name="genre" id="genre" required>
+      <datalist id="genres" autocomplete="off" type="hidden">
+        <option value="Comedy">
+        <option value="Action">
+        <option value="Drama">
+        <option value="Science Fiction">
+        <option value="Family">
+        <option value="Adventure">
+        <option value="Crime"></option>
+        <option value="Documentary"></option>
+        <option value="Fantasy"></option>
+        <option value="History"></option>
+        <option value="Horror"></option>
+        <option value="Romance"></option>
+        <option value="Mystery"></option>
+        <option value="Thriller"></option>g
+        <option value="Animation"></option>
+      </datalist>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    </div>
+
+    <h2>Results for movies from {{chosen_genre}} genre:</h2>
+
+      <table>
+        <tr>
+          <th>Movie-Name</th>
+          <th>Movie-Rate</th>
+          <th>Movie-Overview</th>
+          <th>Movie-Poster</th>
+        </tr> 
+      {% for movie in movies_results %}
+      
+      <tr>
+        <td>
+        {{movie['title']}}
+        </td>
+      <td>
+        {{movie['vote_average']}}
+      </td>
+
+    <td>
+      {{movie['overview']}}    
+    </td>
+
+    <td>
+      <img src="{{movie['poster']}}" alt="Movie Poster">
+    </td>
+    </tr>
+      {% endfor %}
+    </table>
+
+  </body>
+</html>
