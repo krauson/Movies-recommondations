@@ -1,26 +1,4 @@
 from flask import Flask, render_template, request
-import requests
-from backend import get_modified_request, add_posters
-
-app = Flask(__name__)
-
-
-@app.route('/')
-def get_movies():
-  chosen_genre = request.args.get('genre')
-  if not chosen_genre:
-    return render_template('index.html')
-  else:
-    api_request = get_modified_request(chosen_genre)
-    response = requests.get(api_request)
-    print(response)
-    movies_results = response.json()['results']
-    movies_results = add_posters(movies_results)
-    return render_template('index.html',
-                           chosen_genre=chosen_genre.title(),
-                           movies_results=movies_results)
-=======
-from flask import Flask, render_template, request
 import os
 import requests
 
@@ -98,4 +76,4 @@ def get_genres_dict(API_KEY):
       genres_dict[genres[i]['name'].lower()] = genres[i]['id']
 
   return genres_dict
->>>>>>> 16808abbf8d7c26c11142aa6af700f87e05eaa2d
+
